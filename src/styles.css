@@ -1,0 +1,26 @@
+/* --- NAVBAR ON TOP --- */
+nav {
+  position: fixed;      /* stays at top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: white;    /* choose any color */
+  padding: 15px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;        /* keeps it above other elements */
+}
+
+/* --- MAKE THE LIST HORIZONTAL --- */
+.nav-links {
+  list-style: none;
+  display: flex;        /* horizontal layout */
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- LINKS STYLE --- */
+.nav-links a {
+  text-decoration: none;
+  color: black;
+}
