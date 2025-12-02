@@ -1,5 +1,6 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import WorkWithUs from "./WorkWithUs";
 
 const resources = {
   en: {
@@ -7,6 +8,7 @@ const resources = {
       nav: {
         home: "Home",
         artists: "Artists",
+        WorkWithUs: "Work With Us",
         about: "About",
         contact: "Contact",
       },
@@ -22,6 +24,7 @@ const resources = {
       nav: {
         home: "Αρχική",
         artists: "Καλλιτέχνες",
+        WorkWithUs: "Συνεργασια",
         about: "Σχετικά",
         contact: "Επικοινωνία",
       },

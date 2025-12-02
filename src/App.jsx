@@ -5,6 +5,7 @@ import './styles.css';
 import NavBar from './navBar.jsx';
 import Footer from './Footer.jsx';
 import Home from './home.jsx';
+import WorkWithUs from './WorkWithUs.jsx';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <main className="page-content">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/workWithUs" element={<WorkWithUs />} />
             {/* Add these later when you actually create components */}
             {/* <Route path="/artists" element={<Artists />} /> */}
             {/* <Route path="/about" element={<About />} /> */}
