@@ -11,8 +11,8 @@ const resources = {
         contact: "Contact",
       },
       home: {
-        title: "Welcome to Our Website",
-        subtitle: "This is a classic home page built with React.",
+        title: "Become a part of music",
+        subtitle: "Lets collab and make the music world much better.",
         
       },
     },
@@ -26,8 +26,8 @@ const resources = {
         contact: "Επικοινωνία",
       },
       home: {
-        title: "Καλώς ήρθες στην ιστοσελίδα μας",
-        subtitle: "Αυτή είναι μια κλασική αρχική σελίδα με React.",
+        title: "Γινε κομματι της μουσικης",
+        subtitle: "Ας συνεργαστουμε και ας κανουμε το κοσμο της μουσικης καλυτερο.",
         
       },
     },
