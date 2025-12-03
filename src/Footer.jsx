@@ -4,7 +4,7 @@ import './styles.css';
 function Footer() {
   return (
     <footer className="footer">
-      © {new Date().getFullYear()} MySite. All rights reserved.
+      © {new Date().getFullYear()} DotDownTheLabel. All rights reserved.
     </footer>
   );
 }

@@ -44,8 +44,9 @@ function NavBar() {
           <li><Link to="/">{t("nav.home")}</Link></li>
           <li><Link to="/artists">{t("nav.artists")}</Link></li>
           <li><Link to="/workWithUs">{t("nav.WorkWithUs")}</Link></li>
-          <li><Link to="/about">{t("nav.about")}</Link></li>
-          <li><Link to="/contact">{t("nav.contact")}</Link></li>
+          {/* <li><Link to="/about">{t("nav.about")}</Link></li> */}
+          {/* <li><Link to="/contact">{t("nav.contact")}</Link></li> */}
+          <li><Link to="/News">{t("nav.News")}</Link></li>
         </ul>
         </div>
 

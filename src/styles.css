@@ -37,31 +37,41 @@ body {
 }
 
 .navbar-inner {
+  position: relative;           /* important for absolute centering */
   width: 100%;
   max-width: 1600px;
   margin: 0 auto;
   padding: 0 24px;
   display: flex;
   align-items: center;
-
+  justify-content: space-between;
 }
 
-/* left spacer so the logo is perfectly centered */
+/* left & right areas */
+.nav-left,
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+/* remove fixed width that could break centering */
 .nav-left {
-  width: 100px;
+  /* width: 100px;  <-- delete this line */
 }
 
 /* center logo */
 .nav-center {
-  flex: 1;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   justify-content: center;
 }
 
 /* image logo */
 .logo-img {
-  height: 60px;     /* adjust to your taste */
-  padding-left: 120px;
+  height: 60px;
+  /* padding-left: 120px; <-- remove this so it's truly centered */
   cursor: pointer;
 }
 
@@ -83,6 +93,7 @@ body {
 .nav-links a:hover {
   text-decoration: underline;
 }
+
 /* Social icons */
 .social-icons {
   display: flex;
@@ -99,15 +110,17 @@ body {
 .social-icons a:hover {
   opacity: 0.6;
 }
+
+/* Language toggle */
 .lang-toggle {
-  margin-left: 60px;
+  margin-right: 750px;       /* smaller / cleaner than 60px */
   padding: 4px 10px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   border: 1px solid #ffffff;
   border-radius: 6px;
   background: rgb(255, 255, 255);
   cursor: pointer;
-  transition: 1s ease;
+  transition: 0.2s ease;
 }
 
 .lang-toggle:hover {
@@ -120,14 +133,21 @@ body {
 
 /* HOME CONTENT */
 .home-hero {
-  min-height: calc(100vh - 60px - 60px); /* full height minus nav & footer */
+  min-height: calc(60vh - 60px - 60px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
 }
+.home-hero h1 {
+  margin-bottom: 0rem;
+}
 
+.home-hero p {
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem;   /* space between subtitle and cards */
+}
 /* FOOTER */
 .footer {
   height: 60px;
@@ -151,6 +171,7 @@ body {
   justify-content: center;
 }
 
+
 .carousel-track {
   position: relative;
   width: 100%;
@@ -163,14 +184,15 @@ body {
   position: absolute;
   width: 70%;
   max-width: 500px;
-  padding: 5rem 2rem;
+  /* padding: 5rem 2rem; */
   border-radius: 16px;
-  background: #777777;
+  /* background: #777777; */
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
   opacity: 0;
   transform: translateX(0) scale(0.8);
   transition: all 0.35s ease;
   pointer-events: none;
+  overflow: hidden;
 }
 
 .carousel-card h3 {
@@ -178,7 +200,7 @@ body {
 }
 
 .carousel-card p {
-  margin: 0;
+  margin: 1rem;
 }
 
 .carousel-card.active {
@@ -207,12 +229,14 @@ body {
 
 /* Arrows */
 .carousel-arrow {
+  position: absolute;          /* ⬅ key: position around the cards */
+  top: 8.2rem;
+  transform: translateY(-50%); /* center vertically with the card */
   border: none;
   background: #ffffff;
   border-radius: 999px;
-  width: 40px;
-  margin-top: -100px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   font-size: 1.5rem;
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -222,21 +246,22 @@ body {
 }
 
 .carousel-arrow.left {
-  margin-right: 0.75rem;
+  left: -20%;
 }
 
 .carousel-arrow.right {
-  margin-left: 0.75rem;
+  right: -20%;
 }
 
 .carousel-arrow:active {
-  transform: scale(0.95);
+  transform: translateY(-50%) scale(0.95);
 }
+
 
 /* Dots */
 .carousel-dots {
   position: absolute;
-  bottom: -2rem;
+  bottom: -20rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -263,21 +288,29 @@ body {
     width: 90%;
   }
 
-  .carousel-card.prev {
-    transform: translateX(-40%) scale(0.9);
-  }
-
-  .carousel-card.next {
-    transform: translateX(40%) scale(0.9);
-  }
-
   .carousel-arrow {
     width: 32px;
     height: 32px;
     font-size: 1.2rem;
   }
 
+  .carousel-arrow.left {
+    left: 2%;
+  }
+
+  .carousel-arrow.right {
+    right: 2%;
+  }
 }
+.carousel-card-image {
+  width: 100%;
+  height: 100px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
 
 /* WORK WITH US PAGE */
 

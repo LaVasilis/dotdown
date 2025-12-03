@@ -2,6 +2,8 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import "./styles.css";
 import LightRays from './LightRays';
+import i18n from "i18next";
+
 
 function WorkWithUs() {
     const { t } = useTranslation();
@@ -26,22 +28,13 @@ function WorkWithUs() {
             </div>
             <div className="work-text-container">
                 <div className="offer-section">
-                    <h2>Work With Our Studio</h2>
-                    <h3>Random Text from Chat</h3>
-                    <p>
-                        Join our creative team and collaborate on exciting new projects.
-                        We’re looking for talented, passionate individuals to grow with us.
-                        At DotDown The Label, we believe the best work happens when creative minds come together.
-                        We’re always open to partnering with artists, brands, studios, and creators who share our passion for innovation, quality, and unique storytelling.
-                        Whether you’re looking to develop a visual concept, produce high-end digital content, enhance your brand identity, or build something entirely new, we’d love to explore how we can work together.
-                        
-                        
-                    </p>
+                    <h1>{t("workWithUs.title")}</h1>
+                    <p>{t("workWithUs.text")}</p>
                     <ul>
-                        <li>✔ Professional Studio Environment</li>
-                        <li>✔ High-end Creative Projects</li>
-                        <li>✔ Flexible Work Opportunities</li>
-                        <li>✔ Career Growth & Mentorship</li>
+                        <li>{t("workWithUs.FirstCheck")}</li>
+                        <li>{t("workWithUs.SecondCheck")}</li>
+                        <li>{t("workWithUs.ThirdCheck")}</li>
+                        <li>{t("workWithUs.FourthCheck")}</li>
                     </ul>
                 </div>
 

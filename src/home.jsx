@@ -5,32 +5,26 @@ import CardCarousel from './CardCarousel.jsx';
 function Home() {
   const { t } = useTranslation();
 
-  const cards = [
-    {
-      id: 1,
-      title: t("home.cards.first.title", "First feature"),
-      description: t(
-        "home.cards.first.description",
-        "Explain the first cool thing your app does."
-      ),
-    },
-    {
-      id: 2,
-      title: t("home.cards.second.title", "Second feature"),
-      description: t(
-        "home.cards.second.description",
-        "Short description of another nice feature."
-      ),
-    },
-    {
-      id: 3,
-      title: t("home.cards.third.title", "Third feature"),
-      description: t(
-        "home.cards.third.description",
-        "Something else that makes your app special."
-      ),
-    },
-  ];
+const cards = [
+  {
+    id: 1,
+    image: "/src/assets/eminem.jpg",
+    // title: "First feature",
+    // description: "Explain the first cool thing your app does.",
+  },
+  {
+    id: 2,
+    image: "/src/assets/2j.jpg",
+    // title: "Second feature",
+    // description: "Short description of another nice feature.",
+  },
+  {
+    id: 3,
+    image: "/src/assets/daima.jpg",
+    // title: "Third feature",
+    // description: "Something else that makes your app special.",
+  },
+];
 
   return (
     <section className="home-hero">

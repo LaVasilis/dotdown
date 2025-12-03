@@ -4,15 +4,11 @@ function CardCarousel({ cards }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const prevSlide = () => {
-    setActiveIndex((prev) =>
-      prev === 0 ? cards.length - 1 : prev - 1
-    );
+    setActiveIndex((prev) => (prev === 0 ? cards.length - 1 : prev - 1));
   };
 
   const nextSlide = () => {
-    setActiveIndex((prev) =>
-      prev === cards.length - 1 ? 0 : prev + 1
-    );
+    setActiveIndex((prev) => (prev === cards.length - 1 ? 0 : prev + 1));
   };
 
   const goToSlide = (index) => {
@@ -31,9 +27,7 @@ function CardCarousel({ cards }) {
 
           if (index === activeIndex) {
             className += " active";
-          } else if (
-            index === (activeIndex - 1 + cards.length) % cards.length
-          ) {
+          } else if (index === (activeIndex - 1 + cards.length) % cards.length) {
             className += " prev";
           } else if (index === (activeIndex + 1) % cards.length) {
             className += " next";
@@ -43,6 +37,13 @@ function CardCarousel({ cards }) {
 
           return (
             <article key={card.id} className={className}>
+              {card.image && (
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  className="carousel-card-image"
+                />
+              )}
               <h3>{card.title}</h3>
               <p>{card.description}</p>
             </article>
@@ -59,9 +60,7 @@ function CardCarousel({ cards }) {
           <button
             key={index}
             className={
-              index === activeIndex
-                ? "carousel-dot active"
-                : "carousel-dot"
+              index === activeIndex ? "carousel-dot active" : "carousel-dot"
             }
             onClick={() => goToSlide(index)}
           />
