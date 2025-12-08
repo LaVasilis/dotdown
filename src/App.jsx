@@ -6,6 +6,8 @@ import NavBar from './navBar.jsx';
 import Footer from './Footer.jsx';
 import Home from './home.jsx';
 import WorkWithUs from './WorkWithUs.jsx';
+import NewsPage from './NewsPage.jsx';
+import NewsDetail from './NewsDetail.jsx';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/workWithUs" element={<WorkWithUs />} />
+            <Route path="/news" element={<NewsPage />} />
+            <Route path="/news/:id" element={<NewsDetail />} />
             {/* Add these later when you actually create components */}
             {/* <Route path="/artists" element={<Artists />} /> */}
             {/* <Route path="/about" element={<About />} /> */}
