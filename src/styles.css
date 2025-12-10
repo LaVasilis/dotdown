@@ -89,12 +89,16 @@ body {
   color: #000;
   font-size: 0.95rem;
 }
-
-.nav-links a:hover {
-  text-decoration: underline;
+.nav-links .active-link {
+  border-bottom: 2px solid rgb(0, 0, 0);   /* The underline */
 }
+/* .nav-links a:hover {
+  text-decoration: underline;
+} */
 
 /* Social icons */
+
+
 .social-icons {
   display: flex;
   align-items: center;
@@ -673,16 +677,18 @@ body {
 }
 
 /* Artists page title */
+
 .artists-page h1 {
   text-align: center;
-  margin: 58px 0 12px;
+  margin: 2.2rem;
   font-size: 2.3rem;
 }
 .container .slide {
   border-radius: 20px;
+  overflow-x: hidden;
 }
 .container .slide .item {
-  width: 210px;
+  max-width: 100%;
   height: 200px;
   position: absolute;
   top: 50%;
@@ -782,18 +788,23 @@ body {
 }
 
 .button {
+  position: absolute;
+  bottom: -3rem;
+
+  /* center horizontally */
+  left: 50%;
+  transform: translateX(-50%);
+
+  /* layout */
   display: flex;
   flex-direction: row;
   gap: 20px;
-  left: 45%;
-  right: 50%;
-  width: 100%;
   align-items: center;
   text-align: center;
-  position: absolute;
-  bottom: 20px;
-}
 
+  /* don’t let it stretch wider than needed */
+  width: auto;
+}
 .button button {
   width: 40px;
   height: 35px;

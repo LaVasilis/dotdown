@@ -15,7 +15,7 @@ function WorkWithUs() {
             <div className="light-rays-container" >
                 <LightRays
                     raysOrigin="top-center"
-                    raysColor="#00ffff"
+                    raysColor="#699595ff"
                     raysSpeed={1.5}
                     lightSpread={1.5}
                     rayLength={1.3}

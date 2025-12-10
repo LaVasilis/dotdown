@@ -3,6 +3,7 @@ import { FaInstagram, FaTiktok, FaSpotify, FaApple } from "react-icons/fa6";
 import logo from "./assets/dotlogo.png";
 import "./styles.css";
 import { useTranslation } from "react-i18next";
+import { NavLink } from "react-router-dom";
 
 function NavBar() {
     const { t, i18n } = useTranslation();
@@ -41,13 +42,42 @@ function NavBar() {
         {/* RIGHT LINKS */}
         <div className="nav-right">
       <ul className="nav-links">
-          <li><Link to="/">{t("nav.home")}</Link></li>
-          <li><Link to="/artists">{t("nav.artists")}</Link></li>
-          <li><Link to="/workWithUs">{t("nav.WorkWithUs")}</Link></li>
-          {/* <li><Link to="/about">{t("nav.about")}</Link></li> */}
-          {/* <li><Link to="/contact">{t("nav.contact")}</Link></li> */}
-          <li><Link to="/News">{t("nav.News")}</Link></li>
-        </ul>
+    <li>
+      <NavLink 
+        to="/" 
+        className={({ isActive }) => isActive ? "active-link" : ""}
+      >
+        {t("nav.home")}
+      </NavLink>
+    </li>
+
+    <li>
+      <NavLink 
+        to="/artists" 
+        className={({ isActive }) => isActive ? "active-link" : ""}
+      >
+        {t("nav.artists")}
+      </NavLink>
+    </li>
+
+    <li>
+      <NavLink 
+        to="/workWithUs" 
+        className={({ isActive }) => isActive ? "active-link" : ""}
+      >
+        {t("nav.WorkWithUs")}
+      </NavLink>
+    </li>
+
+    <li>
+      <NavLink 
+        to="/news"     // <-- Make sure it's lowercase to match your route
+        className={({ isActive }) => isActive ? "active-link" : ""}
+      >
+        {t("nav.News")}
+      </NavLink>
+    </li>
+</ul>
         </div>
 
       </div>
