@@ -1,7 +1,30 @@
 /* ---- GLOBAL ---- */
 * {
   box-sizing: border-box;
+  /* cursor: url('./assets/Jack Rat Glove-Cigarette (hover).cur'), pointer; */
 }
+
+/* Custom cursor on clickable elements */
+/* button,
+a,
+[role="button"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+select,
+textarea,
+[onclick],
+.clickable,
+.carousel-arrow,
+.carousel-dot,
+.filter-btn,
+.page-btn,
+.nav-links a,
+.social-icons a,
+.lang-toggle,
+.carousel-arrow right {
+  cursor: url('./assets/Jack Rat Glove-Cigarette (hover).cur'), pointer;
+} */
 
 body {
   margin: 0;
@@ -243,6 +266,8 @@ body {
   height: 50px;
   font-size: 1.5rem;
   cursor: pointer;
+  /* the commented is for custom cursor */
+  /* cursor: url('./assets/Jack Rat Glove-Cigarette (hover).cur'), pointer; */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   display: flex;
   align-items: center;
