@@ -40,6 +40,8 @@ const filters = [
 ];
 
 function NewsPage() {
+
+  
   const navigate = useNavigate();
   // const { t } = useTranslation();
 
@@ -76,7 +78,10 @@ function NewsPage() {
   };
 
   return (
+    
+    
     <main className="news-page">
+      
       {/* FILTER BAR */}
       <section className="news-filters">
         {filters.map((f) => (

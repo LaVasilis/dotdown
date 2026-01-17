@@ -14,14 +14,14 @@ function WorkWithUs() {
         <div className="work-container"   >
             <div className="light-rays-container" >
                 <LightRays
-                    raysOrigin="top-center"
+                        raysOrigin="top-center"
                     raysColor="#699595ff"
                     raysSpeed={1.5}
                     lightSpread={1.5}
-                    rayLength={1.3}
+                    rayLength={2.3}
                     followMouse={true}
                     mouseInfluence={0.1}
-                    noiseAmount={0.1}
+                    noiseAmount={0.4}
                     distortion={0.05}
                     className="custom-rays"
                 />
@@ -29,6 +29,7 @@ function WorkWithUs() {
             <div className="work-text-container">
                 <div className="offer-section">
                     <h1>{t("workWithUs.title")}</h1>
+                    <br></br>
                     <p>{t("workWithUs.text")}</p>
                     <ul>
                         <li>{t("workWithUs.FirstCheck")}</li>

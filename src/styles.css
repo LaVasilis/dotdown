@@ -159,21 +159,203 @@ body {
 }
 
 /* HOME CONTENT */
-.home-hero {
-  min-height: calc(60vh - 60px - 60px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-.home-hero h1 {
-  margin-bottom: 0rem;
+
+.home-scroll {
+  width: 100%;
 }
 
-.home-hero p {
-  margin-top: 1.5rem;
-  margin-bottom: 2.5rem;   /* space between subtitle and cards */
+/* Each “third” is one viewport */
+.home-scroll .panel {
+  top: 10px;
+  height: 50vh;
+  position: relative;
+}
+
+/* Sticky area inside each panel (accounts for fixed navbar = 70px) */
+.home-scroll .sticky {
+  position: sticky;
+  top: 70px;
+  height: calc(100vh - 70px);
+  overflow: hidden;
+}
+
+/* =========================
+   PANEL 1: VIDEO
+   ========================= */
+
+.panel--video .sticky--video {
+  background: transparent;
+}
+
+/* Video fills the sticky container */
+.panel--video .home-hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  transform-origin: center;
+  z-index: 0;
+}
+
+/* Optional overlay for readability / vibe */
+.panel--video .home-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 1;
+}
+
+/* =========================
+   PANEL 2: TITLE
+   ========================= */
+
+.panel--title {
+  background: #000;
+}
+
+.panel--title .sticky--title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+}
+
+.panel--title .title-block {
+  text-align: center;
+  max-width: 980px;
+  padding: 0 24px;
+  will-change: transform, opacity;
+}
+
+.panel--title .title-block h1 {
+  margin-bottom: 520px;
+  font-size: 56px;
+  line-height: 1.05;
+  font-weight: 800;
+}
+
+.panel--title .title-block p {
+  margin: 0;
+  font-size: 16px;
+  opacity: 0.85;
+}
+
+/* =========================
+   PANEL 3: CAROUSEL
+   ========================= */
+
+.panel--carousel {
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+}
+
+.carousel-wrap {
+  width: min(980px, 100%);
+  text-align: center;
+}
+
+.carousel-title {
+  margin: 0 0 20px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.carousel-card {
+  border-radius: 18px;
+  overflow: hidden;
+  background: #0b0b0b;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+}
+
+.carousel-card img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  display: block;
+}
+
+.carousel-caption {
+  padding: 14px 16px 16px;
+  font-size: 16px;
+  opacity: 0.95;
+}
+
+.carousel-controls {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.carousel-controls > button {
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.carousel-controls > button:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.carousel-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.carousel-dots .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.carousel-dots .dot.active {
+  width: 18px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* =========================
+   Responsive tweaks
+   ========================= */
+
+@media (max-width: 768px) {
+  .panel--title .title-block h1 {
+    font-size: 40px;
+  }
+
+  .carousel-card img {
+    height: 300px;
+  }
+}
+
+@media (max-width: 420px) {
+  .panel--title .title-block h1 {
+    font-size: 34px;
+  }
+
+  .panel--title .title-block p {
+    font-size: 14px;
+  }
+
+  .carousel-controls > button {
+    width: 38px;
+    height: 38px;
+    font-size: 22px;
+  }
 }
 /* FOOTER */
 .footer {
@@ -705,8 +887,11 @@ body {
 
 .artists-page h1 {
   text-align: center;
-  margin: 2.2rem;
+  margin-top: 0.01rem;
+  margin-bottom: 3rem;
   font-size: 2.3rem;
+  padding-top: 50px;
+  padding-bottom:80px;
 }
 .container .slide {
   border-radius: 20px;
@@ -725,7 +910,87 @@ body {
   display: inline-block;
   transition: all 0.5s;
 }
+.artists-cards {
+  width: 100%;
+  max-width: 1100px;
+  margin: 520px auto 80px; /* pushes below your absolute-position carousel */
+  padding: 0 24px;
 
+  display: grid;
+  grid-template-columns: repeat(4, minmax(220px, 1fr));
+  gap: 22px;
+}
+
+.artist-card {
+  background: #0b0b0b;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.55);
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+
+.artist-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.22);
+}
+
+.artist-card__image {
+  height: 180px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.artist-card__body {
+  padding: 16px 16px 18px;
+}
+
+.artist-card__name {
+  margin: 0 0 10px;
+  font-size: 18px;
+  color: #fff;
+}
+
+.artist-card__desc {
+  margin: 0 0 14px;
+  font-size: 13px;
+  line-height: 1.45;
+  opacity: 0.85;
+  color: #fff;
+}
+
+.artist-card__btn {
+  border: 1px solid rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.18s ease;
+}
+
+.artist-card__btn:hover {
+  background: rgba(255,255,255,0.16);
+  border-color: rgba(255,255,255,0.55);
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .artists-cards {
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .artists-cards {
+    grid-template-columns: 1fr;
+    margin-top: 480px;
+  }
+  .artist-card__image {
+    height: 200px;
+  }
+}
 .slide .item:nth-child(1),
 .slide .item:nth-child(2) {
   top: 0;

@@ -87,7 +87,7 @@ function Artists() {
                   onClick={() => handleSeeMore(slide.songURL)}
                   style={{ cursor: 'pointer' }}
                 >
-                  <button>Play Demo</button>
+                  <button>More Info</button>
                 </a>
               </div>
             </div>
@@ -103,7 +103,30 @@ function Artists() {
           </button>
         </div>
       </div>
+<div className="artists-cards">
+        {initialSlides.map((artist) => (
+          <div className="artist-card" key={artist.name}>
+            <div
+              className="artist-card__image"
+              style={{
+                backgroundImage: `url('${artist.image}')`,
+                backgroundPosition: artist.position || "50% 50%",
+              }}
+            />
+            <div className="artist-card__body">
+              <h3 className="artist-card__name">{artist.name}</h3>
+              <p className="artist-card__desc">{artist.description}</p>
 
+              <button
+                className="artist-card__btn"
+                onClick={() => handleSeeMore(artist.songURL)}
+              >
+                More Info
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
       {/* Spotify Modal */}
       {showModal && (
         <div
