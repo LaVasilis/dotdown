@@ -1,34 +1,20 @@
 import React, { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next"; // if you want i18n
+import {useEffect} from "react";
+import {sanity} from "./sanityClient";
 
-// Dummy data – later you can fetch this from an API / CMS
-const NEWS_ITEMS = [
-  {
-    id: "1",
-    title: "BarroPasso Live in Berlin",
-    category: "upcoming",
-    date: "2025-01-20",
-    excerpt: "We are burning Berlin next week. Get your tickets now!",
-    imageUrl: "src/assets/dotlive.jpg",
-  },
-  {
-    id: "2",
-    title: "New EP from Sapiens X Diky",
-    category: "releases",
-    date: "2025-01-05",
-    excerpt: "A fresh 4-track EP from the upcoming artists.",
-    imageUrl: "src/assets/avunity.jpg",
-  },
-  {
-    id: "3",
-    title: "DotDown partners with  OffTheHook",
-    category: "general",
-    date: "2024-12-14",
-    excerpt: "We’re teaming up with OffTheHook Festival.",
-    imageUrl: "src/assets/untoff.jpg",
-  },
-];
+
+const QUERY = `*[_type == "newsArticle"] | order(publishedAt desc) {
+  _id,
+  title,
+  category,
+  publishedAt,
+  excerpt,
+  "id": slug.current,
+  "imageUrl": mainImage.asset->url
+}`;
+
 
 const PAGE_SIZE = 6;
 
@@ -40,8 +26,12 @@ const filters = [
 ];
 
 function NewsPage() {
+  const [newsItems, setNewsItems] = useState([]);
 
-  
+  useEffect(() => {
+  sanity.fetch(QUERY).then(setNewsItems).catch(console.error);
+  }, []);
+
   const navigate = useNavigate();
   // const { t } = useTranslation();
 
@@ -49,9 +39,10 @@ function NewsPage() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const filteredNews = useMemo(() => {
-    if (activeFilter === "all") return NEWS_ITEMS;
-    return NEWS_ITEMS.filter((item) => item.category === activeFilter);
-  }, [activeFilter]);
+    if (activeFilter === "all") return newsItems;
+return newsItems.filter((item) => item.category === activeFilter);
+  }, [activeFilter, newsItems]);
+
 
   const pageCount = Math.ceil(filteredNews.length / PAGE_SIZE);
 
@@ -116,7 +107,7 @@ function NewsPage() {
                   {filters.find((f) => f.key === item.category)?.label}
                 </span>
                 <span className="news-card-date">
-                  {new Date(item.date).toLocaleDateString()}
+                  {new Date(item.publishedAt).toLocaleDateString()}
                 </span>
               </p>
               <h3 className="news-card-title">{item.title}</h3>
