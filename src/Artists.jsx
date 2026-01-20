@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.css";
 import sapiImage from "./assets/sapi2Img.webp";
 import dikiImage from "./assets/diky.jpeg";
@@ -15,6 +15,7 @@ const initialSlides = [
     fullInfo:
       "The Performance by SAPIENS is a mesmerizing journey through sound and rhythm, balancing organic instrumentation with contemporary beat design. Their releases often lean into storytelling through atmosphere, using gradual builds, melodic motifs, and carefully placed ambient details. Expect music that works equally well for late-night focus and deep listening.",
     image: sapiImage,
+    tags: ["Rapper"],
     position: "50% 50%",
     songURL:
       "https://open.spotify.com/embed/track/0JSh3z3IeMFrFubk2Vt7b5?utm_source=generator",
@@ -26,6 +27,7 @@ const initialSlides = [
     fullInfo:
       "TAY’s productions focus on clarity and mood: tight drum programming, spacious pads, and hooks that repeat just enough to feel comforting. Influences range from chillhop to ambient pop, giving each track a gentle lift without losing the laid-back feel. If you like lo-fi that feels polished but still cozy, TAY sits right in that lane.",
     image: tayImg,
+    tags: ["Rapper"],
     position: "0px 40%",
     songURL:
       "https://open.spotify.com/embed/track/7qiZfU4dY1lsylvNEJkhlH?utm_source=generator&theme=0",
@@ -37,6 +39,7 @@ const initialSlides = [
     fullInfo:
       "DIKY builds immersive soundscapes using filtered samples, subtle distortions, and low-end weight that stays controlled. Their arrangements avoid clutter, making small details—like tape hiss, room noise, or a single melodic fragment—feel important. It’s a sound designed for late nights, rainy days, and deep focus sessions.",
     image: dikiImage,
+    tags: ["Rapper"],
     position: "0px 28%",
     songURL:
       "https://open.spotify.com/embed/track/4cOdK2wGLETKBW3PvgPWqLv?utm_source=generator&theme=0",
@@ -48,6 +51,7 @@ const initialSlides = [
     fullInfo:
       "The producer NEZ crafts immersive soundscapes that sit between chillhop and ambient, often using gentle harmonic movement and subtle transitions. Their music emphasizes pacing and texture, building a ‘floating’ feeling without losing groove. Great for studying, journaling, or putting on in the background when you want calm with character.",
     image: nez,
+    tags: ["Producer"],
     position: "0px 40%",
     songURL:
       "https://open.spotify.com/embed/track/2takcwFFVPdS6mFmlKheGW?utm_source=generator&theme=0",
@@ -59,8 +63,16 @@ function Artists() {
   const [showModal, setShowModal] = useState(false);
   const [currentArtist, setCurrentArtist] = useState(null);
 
-  const handleNext = () => setSlides((prev) => [...prev.slice(1), prev[0]]);
-  const handlePrev = () => setSlides((prev) => [prev[prev.length - 1], ...prev.slice(0, -1)]);
+  useEffect(() => {
+  const interval = setInterval(() => {
+    setSlides((prev) => [...prev.slice(1), prev[0]]);
+  }, 4000); // 4 seconds
+
+  return () => clearInterval(interval);
+}, []);
+
+  // const handleNext = () => setSlides((prev) => [...prev.slice(1), prev[0]]);
+  // const handlePrev = () => setSlides((prev) => [prev[prev.length - 1], ...prev.slice(0, -1)]);
 
   const openArtist = (artist) => {
     setCurrentArtist(artist);
@@ -97,15 +109,16 @@ function Artists() {
           ))}
         </div>
 
-        <div className="button">
+        {/* <div className="button">
           <button className="prev" onClick={handlePrev}>◁</button>
           <button className="next" onClick={handleNext}>▷</button>
-        </div>
+        </div> */}
       </div>
 
       {/* cards (now fully clickable) */}
       <div className="artists-cards">
         {initialSlides.map((artist) => (
+          
           <div
             className="artist-card artist-card--clickable"
             key={artist.name}
@@ -121,6 +134,10 @@ function Artists() {
                 backgroundPosition: artist.position || "50% 50%",
               }}
             />
+              <div className="artist-card__tagtip">
+              {(artist.tags || []).join("  ")}
+              </div>
+
             <div className="artist-card__body">
               <h3 className="artist-card__name">{artist.name}</h3>
 

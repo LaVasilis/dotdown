@@ -656,7 +656,7 @@ body {
   width: 800px;
   height: 400px;
   background: #000;
-  box-shadow: 0 30px 50px #505050;
+  box-shadow: 10px 100px 100px #1b1b1b00;
   border-radius: 20px;
 }
 
@@ -672,7 +672,7 @@ body {
   top: 50%;
   transform: translate(0, -50%);
   border-radius: 20px;
-  box-shadow: 0 30px 50px #505050;
+  box-shadow: 0 30px 50px #22222259;
   background-size: cover;
   background-repeat: no-repeat;
   display: inline-block;
@@ -828,6 +828,36 @@ body {
   transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
   cursor: pointer;
   outline: none;
+}
+.artist-card__tagtip {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+
+  padding: 8px 10px;
+  border-radius: 999px;
+
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 180ms ease, transform 180ms ease;
+  pointer-events: none; /* so it doesn’t block clicks */
+  z-index: 2;
+}
+
+/* show on hover (and keyboard focus) */
+.artist-card:hover .artist-card__tagtip,
+.artist-card:focus-visible .artist-card__tagtip {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .artist-card:hover {
