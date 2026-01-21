@@ -86,7 +86,7 @@ function Artists() {
 
   return (
     <section className="artists-page">
-      <h1>Our Roster</h1>
+      <h1>Members</h1>
 
       {/* carousel (unchanged except click handler) */}
       <div className="container">

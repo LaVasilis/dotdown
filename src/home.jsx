@@ -2,14 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import heroLoop from "/src/assets/get.mp4";
 
-// (temporary mock data)
-const ARTISTS = [
-  { name: "Artist 1", img: "https://picsum.photos/800/500?1" },
-  { name: "Artist 2", img: "https://picsum.photos/800/500?2" },
-  { name: "Artist 3", img: "https://picsum.photos/800/500?3" },
-  { name: "Artist 4", img: "https://picsum.photos/800/500?4" },
-];
-
 function clamp01(n) {
   return Math.max(0, Math.min(1, n));
 }
@@ -29,7 +21,6 @@ function Home() {
       // VIDEO panel progress
       if (videoPanelRef.current) {
         const r = videoPanelRef.current.getBoundingClientRect();
-        // r.top goes from 0 -> -vh while scrolling through the panel
         const vh = window.innerHeight || 1;
         const p = clamp01(-r.top / vh);
         setVideoProgress(p);
@@ -50,12 +41,12 @@ function Home() {
   }, []);
 
   // video motion: slight zoom + fade while scrolling first panel
-  const videoScale = 1 + videoProgress * 0.12;       // 1.00 -> 1.12
-  const videoOpacity = 1 - videoProgress * 0.35;     // 1.00 -> 0.65
+  const videoScale = 1 + videoProgress * 0.12; // 1.00 -> 1.12
+  const videoOpacity = 1 - videoProgress * 0.35; // 1.00 -> 0.65
 
   // title motion: slide up + fade in while scrolling second panel
-  const titleY = 40 - titleProgress * 40;            // 40px -> 0px
-  const titleOpacity = titleProgress;                // 0 -> 1
+  const titleY = 40 - titleProgress * 40; // 40px -> 0px
+  const titleOpacity = titleProgress; // 0 -> 1
 
   return (
     <main className="home-scroll">
@@ -93,55 +84,32 @@ function Home() {
             // }}
           >
             <h1>{t("home.title")}</h1>
-            <p>{t("home.subtitle")}</p>
+            {/* <p>{t("home.subtitle")}</p> */}
           </div>
         </div>
       </section>
 
-      {/* 3) CAROUSEL PANEL */}
-      <section className="panel panel--carousel">
-        <ArtistsCarousel artists={ARTISTS} />
+      {/* 3) LABEL SUMMARY PANEL (replaces carousel) */}
+      <section className="panel panel--about">
+        <div className="about-wrap">
+          <h2 className="about-title">DotDown The Label</h2>
+          <p className="about-text">
+            DotDown is an independent label focused on pushing new sound forward.
+            We work closely with our artists from creation to release—building
+            projects with strong identity, clean visuals, and long-term vision.
+            Our roster blends atmosphere, rhythm, and emotion across hip-hop and
+            modern production styles, always staying true to the culture while
+            exploring what’s next.
+
+            <p></p>
+<br></br>
+            From studio sessions to distribution and promotion, we’re here to
+            develop talent and deliver music that feels real, intentional, and
+            timeless.
+          </p>
+        </div>
       </section>
     </main>
-  );
-}
-
-function ArtistsCarousel({ artists }) {
-  const [index, setIndex] = useState(0);
-
-  const prev = () => setIndex((i) => (i - 1 + artists.length) % artists.length);
-  const next = () => setIndex((i) => (i + 1) % artists.length);
-
-  const current = artists[index];
-
-  return (
-    <div className="carousel-wrap">
-      <h2 className="carousel-title">Artists</h2>
-
-      <div className="carousel-card">
-        <img src={current.img} alt={current.name} />
-        <div className="carousel-caption">{current.name}</div>
-      </div>
-
-      <div className="carousel-controls">
-        <button onClick={prev} aria-label="Previous">
-          ‹
-        </button>
-        <div className="carousel-dots">
-          {artists.map((_, i) => (
-            <button
-              key={i}
-              className={`dot ${i === index ? "active" : ""}`}
-              onClick={() => setIndex(i)}
-              aria-label={`Go to slide ${i + 1}`}
-            />
-          ))}
-        </div>
-        <button onClick={next} aria-label="Next">
-          ›
-        </button>
-      </div>
-    </div>
   );
 }
 
