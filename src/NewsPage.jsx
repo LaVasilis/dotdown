@@ -27,13 +27,14 @@ const filters = [
 
 function NewsPage() {
   const [newsItems, setNewsItems] = useState([]);
+  const { i18n } = useTranslation();
+  const currentLang = i18n.language || 'en';
 
   useEffect(() => {
   sanity.fetch(QUERY).then(setNewsItems).catch(console.error);
   }, []);
 
   const navigate = useNavigate();
-  // const { t } = useTranslation();
 
   const [activeFilter, setActiveFilter] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
@@ -110,8 +111,8 @@ return newsItems.filter((item) => item.category === activeFilter);
                   {new Date(item.publishedAt).toLocaleDateString()}
                 </span>
               </p>
-              <h3 className="news-card-title">{item.title}</h3>
-              <p className="news-card-excerpt">{item.excerpt}</p>
+              <h3 className="news-card-title">{item.title?.[currentLang] ?? item.title?.en ?? item.title?.el}</h3>
+              <p className="news-card-excerpt">{item.excerpt?.[currentLang] ?? item.excerpt?.en ?? item.excerpt?.el}</p>
               <span className="news-card-link">Read more →</span>
             </div>
           </article>

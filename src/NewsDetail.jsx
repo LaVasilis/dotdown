@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { PortableText } from "@portabletext/react";
 import { sanity } from "./sanityClient"; // adjust path if needed
 
@@ -17,6 +18,8 @@ const DETAIL_QUERY = `*[_type == "newsArticle" && slug.current == $slug][0]{
 function NewsDetail() {
   const { id } = useParams(); // this is actually the slug
   const navigate = useNavigate();
+  const { i18n } = useTranslation();
+  const currentLang = i18n.language || 'en';
 
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -84,7 +87,7 @@ function NewsDetail() {
         ← Back to news
       </button>
 
-      <h1>{item.title}</h1>
+      <h1>{item.title?.[currentLang] ?? item.title?.en ?? item.title?.el}</h1>
 
       <p className="news-detail-meta">
         {item.publishedAt ? new Date(item.publishedAt).toLocaleDateString() : ""}
@@ -92,12 +95,14 @@ function NewsDetail() {
 
       {item.imageUrl && (
         <div className="news-detail-image">
-          <img src={item.imageUrl} alt={item.title} />
+          <img src={item.imageUrl} alt={item.title?.[currentLang] ?? item.title?.en ?? item.title?.el} />
         </div>
       )}
 
       <div className="news-detail-body">
-        {item.body && <PortableText value={item.body} />}
+        {item.body?.[currentLang] && <PortableText value={item.body[currentLang]} />}
+        {!item.body?.[currentLang] && item.body?.en && <PortableText value={item.body.en} />}
+        {!item.body?.[currentLang] && !item.body?.en && item.body?.el && <PortableText value={item.body.el} />}
       </div>
     </main>
   );

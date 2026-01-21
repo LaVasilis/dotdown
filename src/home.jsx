@@ -99,9 +99,9 @@ function Home() {
       </section>
 
       {/* 3) CAROUSEL PANEL */}
-      <section className="panel panel--carousel">
+      {/* <section className="panel panel--carousel">
         <ArtistsCarousel artists={ARTISTS} />
-      </section>
+      </section> */}
     </main>
   );
 }

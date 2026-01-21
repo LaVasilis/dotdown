@@ -8,8 +8,21 @@ export default defineType({
     defineField({
       name: 'title',
       title: 'Title',
-      type: 'string',
-      validation: (r) => r.required(),
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'en',
+          title: 'Title (English)',
+          type: 'string',
+          validation: (r) => r.required(),
+        }),
+        defineField({
+          name: 'el',
+          title: 'Title (Greek)',
+          type: 'string',
+          validation: (r) => r.required(),
+        }),
+      ],
     }),
 
     defineField({
@@ -45,8 +58,21 @@ export default defineType({
     defineField({
       name: 'excerpt',
       title: 'Excerpt',
-      type: 'text',
-      rows: 3,
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'en',
+          title: 'Excerpt (English)',
+          type: 'text',
+          rows: 3,
+        }),
+        defineField({
+          name: 'el',
+          title: 'Excerpt (Greek)',
+          type: 'text',
+          rows: 3,
+        }),
+      ],
     }),
 
     defineField({
@@ -56,11 +82,24 @@ export default defineType({
       options: {hotspot: true},
     }),
 
-    defineField({
+        defineField({
       name: 'body',
       title: 'Body',
-      type: 'array',
-      of: [{type: 'block'}],
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'en',
+          title: 'Body (English)',
+          type: 'array',
+          of: [{type: 'block'}],
+        }),
+        defineField({
+          name: 'el',
+          title: 'Body (Greek)',
+          type: 'array',
+          of: [{type: 'block'}],
+        }),
+      ],
     }),
   ],
 })
