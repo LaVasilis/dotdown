@@ -89,7 +89,6 @@ function Home() {
         </div>
       </section>
 
-<<<<<<< HEAD
       {/* 3) LABEL SUMMARY PANEL (replaces carousel) */}
       <section className="panel panel--about">
         <div className="about-wrap">
@@ -110,12 +109,6 @@ function Home() {
           </p>
         </div>
       </section>
-=======
-      {/* 3) CAROUSEL PANEL */}
-      {/* <section className="panel panel--carousel">
-        <ArtistsCarousel artists={ARTISTS} />
-      </section> */}
->>>>>>> 276c0cc6260641ce938bfd78830c7423a387de42
     </main>
   );
 }
