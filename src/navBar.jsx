@@ -122,9 +122,9 @@ function NavBar() {
           aria-label="Open menu"
           aria-expanded={menuOpen}
         >
-          <span />
-          <span />
-          <span />
+          <span> </span>
+          <span> </span>
+          <span> </span>
         </button>
 
         {/* MOBILE MENU PANEL */}

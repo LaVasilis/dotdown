@@ -32,7 +32,7 @@ body {
   color: #000;
   display: flex;
   align-items: center;
-  z-index: 1000;
+  z-index: 5000;
 }
 
 .navbar-inner {
@@ -122,23 +122,23 @@ body {
 }
 /* ---------- Burger (mobile) ---------- */
 .burger {
-  display: none;
+  display: none; /* stays hidden on desktop */
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
   width: 44px;
   height: 44px;
-  border: 0;
   background: transparent;
+  border: none;
   cursor: pointer;
-  position: relative;
-  z-index: 1201;
 }
 
 .burger span {
-  display: block;
-  width: 22px;
+  width: 26px;
   height: 2px;
-  background: #000;
-  margin: 5px auto;
-  transition: transform 180ms ease, opacity 180ms ease;
+  background-color: #000;
+  border-radius: 2px;
+  display: block;
 }
 
 .burger.is-open span:nth-child(1) {
@@ -160,7 +160,7 @@ body {
   width: min(82vw, 320px);
   background: #0b0b0b;
   padding: 90px 22px 22px;
-  z-index: 1200;
+  z-index: 5000;
 
   transform: translateX(100%);
   transition: transform 220ms ease;
@@ -208,10 +208,18 @@ body {
 
 /* ---------- Mobile breakpoint ---------- */
 @media (max-width: 900px) {
+  /* keep desktop UI unchanged, only mobile behavior */
+
   /* hide desktop links */
   .nav-right .nav-links {
     display: none;
   }
+
+  /* IMPORTANT: hide the desktop language switch on mobile */
+  .lang-toggle{
+  display: none;      /* hide the desktop toggle on mobile */
+  margin-right: 0;    /* safety: prevents the 750px push even if display changes */
+}
 
   /* show burger */
   .burger {
@@ -220,9 +228,14 @@ body {
     justify-content: center;
   }
 
-  /* shrink socials so they fit */
+  /* shrink inner padding so things fit */
+  .navbar-inner {
+    padding: 0 12px;
+  }
+
+  /* shrink socials so they don't interfere with center logo */
   .social-icons {
-    gap: 8px;
+    gap: 10px;
   }
 
   .social-icons a svg {
@@ -230,15 +243,9 @@ body {
     height: 18px;
   }
 
-  /* optional: if language button crowds, reduce it */
-  .lang-toggle {
-    padding: 6px 10px;
-    font-size: 0.85rem;
-  }
-
-  /* if your navbar-inner is tight, ensure spacing */
-  .navbar-inner {
-    align-items: center;
+  /* logo slightly smaller on mobile */
+  .logo-img {
+    height: 46px;
   }
 }
 /* =========================
@@ -357,7 +364,9 @@ body {
 @media (max-width: 420px) {
   .panel--title .title-block h1 {
     font-size: 34px;
+    margin-top: -75px;
   }
+  
   .panel--title .title-block p {
     font-size: 14px;
   }
@@ -536,7 +545,32 @@ body {
   background-color: #000000;
   border-color: #05aaeb;
 }
+@media (max-width: 900px) {
+  .work-container {
+    padding: 40px 16px;
+    align-items: flex-start;
+  }
 
+  .work-text-container {
+    flex-direction: column;
+    gap: 18px;
+    align-items: stretch;
+  }
+
+  .offer-section {
+    max-width: 100%;
+  }
+
+  .form-container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .form-container .form-submit-btn {
+    width: 100%;
+    align-self: stretch;
+  }
+}
 /* =========================
    NEWS
    ========================= */
@@ -703,6 +737,7 @@ body {
 /* =========================
    ARTISTS PAGE (ROSTER)
    ========================= */
+
 .artists-page h1 {
   text-align: center;
   margin-top: 0.01rem;
@@ -710,9 +745,13 @@ body {
   font-size: 2.3rem;
   padding-top: 50px;
   padding-bottom: 80px;
+  z-index: 0;
 }
 
-/* main carousel container */
+/* =========================
+   CAROUSEL
+   ========================= */
+
 .container {
   position: absolute;
   top: 50%;
@@ -723,6 +762,7 @@ body {
   background: #000;
   box-shadow: 10px 100px 100px #1b1b1b00;
   border-radius: 20px;
+  z-index: 0;
 }
 
 .container .slide {
@@ -731,10 +771,9 @@ body {
 }
 
 .container .slide .item {
-  max-width: 100%;
-  height: 200px;
   position: absolute;
   top: 50%;
+  height: 200px;
   transform: translate(0, -50%);
   border-radius: 20px;
   box-shadow: 0 30px 50px #22222259;
@@ -749,11 +788,10 @@ body {
 .slide .item:nth-child(2) {
   top: 0;
   left: 0;
-  transform: translate(0, 0);
   width: 100%;
   height: 100%;
+  transform: translate(0, 0);
   border-radius: 20px;
-  transition: all 0.5s;
 }
 
 .slide .item:nth-child(3) { left: 50%; }
@@ -771,9 +809,9 @@ body {
   top: 50%;
   left: 100px;
   width: 300px;
+  transform: translate(0, -50%);
   text-align: left;
   color: #eee;
-  transform: translate(0, -50%);
   font-family: system-ui;
   display: none;
 }
@@ -782,7 +820,6 @@ body {
   display: block;
 }
 
-/* show NAME + button only */
 .content .name {
   font-size: 40px;
   text-transform: uppercase;
@@ -796,17 +833,18 @@ body {
   display: none;
 }
 
-/* More Info button positioned where you wanted (near bottom area) */
+/* More Info button */
 .content button {
   position: absolute;
-  bottom: -50px; /* moves into the lower area of the image; tweak if needed */
+  bottom: -50px;
   left: -10px;
   padding: 8px 30px;
   border: none;
-  cursor: pointer;
   border-radius: 10px;
+  cursor: pointer;
   background-color: rgba(255, 255, 255, 0.673);
   transition: all 0.5s;
+
   opacity: 0;
   animation: animate 1s ease-in-out 0.6s 1 forwards;
 }
@@ -835,10 +873,8 @@ body {
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  flex-direction: row;
   gap: 20px;
   align-items: center;
-  text-align: center;
   width: auto;
 }
 
@@ -846,24 +882,21 @@ body {
   width: 40px;
   height: 35px;
   border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  margin: 0 5px;
   border: 2px solid #000000bd;
-  transition: 0.3s;
+  cursor: pointer;
   background: rgba(255, 255, 255, 0.578);
+  transition: 0.3s;
 }
 
 .button button:hover {
-  color: #000;
-  border: 2px solid #ffffffbd;
+  border-color: #ffffffbd;
   transform: scale(1.1);
 }
 
 .button button:focus {
   transform: scale(1.1);
   background: #fff;
-  border: 2px solid #ffffffbd;
+  border-color: #ffffffbd;
 }
 
 .button button:active {
@@ -873,7 +906,10 @@ body {
 .next { padding-left: 3px; }
 .prev { padding-right: 3px; }
 
-/* artist grid cards */
+/* =========================
+   ARTIST GRID CARDS
+   ========================= */
+
 .artists-cards {
   width: 100%;
   max-width: 1100px;
@@ -894,36 +930,6 @@ body {
   cursor: pointer;
   outline: none;
 }
-.artist-card__tagtip {
-  position: absolute;
-  left: 14px;
-  top: 14px;
-
-  padding: 8px 10px;
-  border-radius: 999px;
-
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.2px;
-
-  background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #fff;
-
-  opacity: 0;
-  transform: translateY(-6px);
-  transition: opacity 180ms ease, transform 180ms ease;
-  pointer-events: none; /* so it doesn’t block clicks */
-  z-index: 2;
-}
-
-/* show on hover (and keyboard focus) */
-.artist-card:hover .artist-card__tagtip,
-.artist-card:focus-visible .artist-card__tagtip {
-  opacity: 1;
-  transform: translateY(0);
-}
 
 .artist-card:hover {
   transform: translateY(-4px);
@@ -937,7 +943,34 @@ body {
 
 .artist-card:focus-visible {
   border-color: rgba(255, 255, 255, 0.55);
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.18), 0 22px 55px rgba(0, 0, 0, 0.65);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.18),
+              0 22px 55px rgba(0, 0, 0, 0.65);
+}
+
+.artist-card__tagtip {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 180ms ease, transform 180ms ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.artist-card:hover .artist-card__tagtip,
+.artist-card:focus-visible .artist-card__tagtip {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .artist-card__image {
@@ -956,19 +989,22 @@ body {
 }
 
 .artist-card__name {
-  text-align: center;
   margin: 0;
+  text-align: center;
   font-size: 16px;
   letter-spacing: 0.06em;
   color: #fff;
 }
 
-/* hide preview text in cards (details only in modal) */
+/* hide preview text in cards */
 .artist-card__desc {
   display: none;
 }
 
-/* modal */
+/* =========================
+   MODAL
+   ========================= */
+
 .artist-modal__backdrop {
   position: fixed;
   inset: 0;
@@ -1036,13 +1072,17 @@ body {
   opacity: 0.9;
   color: #fff;
 }
+
 .artist-modal__spotify {
   margin-top: 16px;
   display: flex;
   justify-content: left;
 }
 
-/* Artists responsive */
+/* =========================
+   RESPONSIVE
+   ========================= */
+
 @media (max-width: 1100px) {
   .artists-cards {
     grid-template-columns: repeat(2, minmax(220px, 1fr));
@@ -1065,5 +1105,60 @@ body {
   }
   .artist-card__image {
     height: 200px;
+  }
+}
+
+/* =========================
+   CAROUSEL - MOBILE FIT
+   ========================= */
+
+@media (max-width: 600px) {
+  .artists-page .container {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: calc(100vw - 24px);
+    height: 320px;
+    margin: -30px auto 200px;
+  }
+
+  .artists-page .container .slide {
+    height: 100%;
+  }
+
+  .artists-page .container .slide .item {
+    height: 100%;
+    top: 0;
+    transform: none;
+  }
+
+  /* show only active slide */
+  .artists-page .slide .item:nth-child(1) { display: none; }
+  .artists-page .slide .item:nth-child(2) {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: none;
+  }
+  .artists-page .slide .item:nth-child(n + 3) { display: none; }
+
+  .artists-page .item .content {
+    left: 16px;
+    top: 250px;
+    width: calc(100% - 32px);
+  }
+
+  .artists-page .content .name {
+    font-size: 28px;
+  }
+
+  .artists-page .content button {
+    bottom: -34px;
+  }
+
+  .artists-page .artists-cards {
+    margin: 24px auto 80px;
   }
 }

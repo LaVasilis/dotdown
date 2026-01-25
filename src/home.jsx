@@ -52,26 +52,27 @@ function Home() {
     <main className="home-scroll">
       {/* 1) VIDEO PANEL */}
       <section className="panel panel--video" ref={videoPanelRef}>
-        <div className="sticky sticky--video">
-          <video
-            className="home-hero__video"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            style={{
-              transform: `scale(${videoScale})`,
-              opacity: videoOpacity,
-            }}
-          >
-            <source src={heroLoop} type="video/mp4" />
-          </video>
+  <div className="sticky sticky--video">
+    <div className="video-frame">
+      <video
+        className="home-hero__video"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        style={{
+          transform: `scale(${videoScale})`,
+          opacity: videoOpacity,
+        }}
+      >
+        <source src={heroLoop} type="video/mp4" />
+      </video>
 
-          {/* overlay (optional) */}
-          <div className="home-hero__overlay" />
-        </div>
-      </section>
+      <div className="home-hero__overlay" />
+    </div>
+  </div>
+</section>
 
       {/* 2) TITLE PANEL */}
       <section className="panel panel--title" ref={titlePanelRef}>
