@@ -1,7 +1,7 @@
 // PopularSongs.jsx
 export default function ArtistsSongs({ songURL }) {
   return (
-    <div style={{ maxWidth: '100%', backgroundColor: '#141c50', padding: '5px', borderRadius: '12px' }}>
+    <div style={{ width: '100%' }}>
       <iframe
         data-testid="embed-iframe"
         style={{ borderRadius: '12px' }}
