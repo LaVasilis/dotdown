@@ -1161,4 +1161,12 @@ body {
   .artists-page .artists-cards {
     margin: 24px auto 80px;
   }
+
+  /* .color-bends-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+} */
+
 }

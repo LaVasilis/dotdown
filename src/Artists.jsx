@@ -5,6 +5,7 @@ import dikiImage from "./assets/diky.jpeg";
 import nez from "./assets/nez.jpg";
 import tayImg from "./assets/tayImg.webp";
 import ArtistsSongs from "./Songs.jsx";
+import ColorBends from "./ColorBends.jsx";
 
 
 const initialSlides = [
@@ -64,12 +65,12 @@ function Artists() {
   const [currentArtist, setCurrentArtist] = useState(null);
 
   useEffect(() => {
-  const interval = setInterval(() => {
-    setSlides((prev) => [...prev.slice(1), prev[0]]);
-  }, 4000); // 4 seconds
+    const interval = setInterval(() => {
+      setSlides((prev) => [...prev.slice(1), prev[0]]);
+    }, 4000); // 4 seconds
 
-  return () => clearInterval(interval);
-}, []);
+    return () => clearInterval(interval);
+  }, []);
 
   // const handleNext = () => setSlides((prev) => [...prev.slice(1), prev[0]]);
   // const handlePrev = () => setSlides((prev) => [prev[prev.length - 1], ...prev.slice(0, -1)]);
@@ -85,98 +86,131 @@ function Artists() {
   };
 
   return (
-    <section className="artists-page">
-      <h1>Members</h1>
+    <>
+      <div style={{
+        position: "fixed",
+        width: "100vw",
+        height: "100vh",
+        minHeight: "100vh",  
+        zIndex: 0,
+        pointerEvents: "none"
+      }}>
+        <ColorBends
+          // colors={["#410d4b", "#50070d", "#22101e"]}
+          colors={["#ffffff", "#000000", "#080808"]}
+          rotation={-52}
+          speed={0.07}
+          scale={1.1}
+          frequency={1}
+          warpStrength={1}
+          mouseInfluence={0.95}
+          parallax={0.65}
+          noise={0.05}
+          transparent
+          autoRotate={1.1}
+        />
+      </div>
 
-      {/* carousel (unchanged except click handler) */}
-      <div className="container">
-        <div className="slide">
-          {slides.map((slide, index) => (
-            <div
-              key={index}
-              className="item"
-              style={{
-                backgroundImage: `url('${slide.image}')`,
-                backgroundPosition: slide.position,
-              }}
-            >
-              <div className="content">
-                <div className="name">{slide.name}</div>
-                <div className="des">{slide.preview}</div>
-                <button onClick={() => openArtist(slide)}>More Info</button>
-              </div>
+
+      <div style={{
+        position: "relative",
+        zIndex: 1,
+        minHeight: "100vh",
+        pointerEvents: "auto"
+      }}>
+        <section className="artists-page">
+          <h1>Members</h1>
+          {/* carousel (unchanged except click handler) */}
+          <div className="container">
+            <div className="slide">
+              {slides.map((slide, index) => (
+                <div
+                  key={index}
+                  className="item"
+                  style={{
+                    backgroundImage: `url('${slide.image}')`,
+                    backgroundPosition: slide.position,
+                  }}
+                >
+                  <div className="content">
+                    <div className="name">{slide.name}</div>
+                    <div className="des">{slide.preview}</div>
+                    <button onClick={() => openArtist(slide)}>More Info</button>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
 
-        {/* <div className="button">
+            {/* <div className="button">
           <button className="prev" onClick={handlePrev}>◁</button>
           <button className="next" onClick={handleNext}>▷</button>
         </div> */}
-      </div>
-
-      {/* cards (now fully clickable) */}
-      <div className="artists-cards">
-        {initialSlides.map((artist) => (
-          
-          <div
-            className="artist-card artist-card--clickable"
-            key={artist.name}
-            role="button"
-            tabIndex={0}
-            onClick={() => openArtist(artist)}
-            onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && openArtist(artist)}
-          >
-            <div
-              className="artist-card__image"
-              style={{
-                backgroundImage: `url('${artist.image}')`,
-                backgroundPosition: artist.position || "50% 50%",
-              }}
-            />
-              <div className="artist-card__tagtip">
-              {(artist.tags || []).join("  ")}
-              </div>
-
-            <div className="artist-card__body">
-              <h3 className="artist-card__name">{artist.name}</h3>
-
-              {/* 3+ sentences preview */}
-              <p className="artist-card__desc">{artist.preview}</p>
-
-              {/* <div className="artist-card__cta">Click for more</div> */}
-            </div>
           </div>
-        ))}
-      </div>
 
-      {/* Popup modal (small window + info + Spotify) */}
-      {showModal && currentArtist && (
-        <div className="artist-modal__backdrop" onClick={closeModal}>
-          <div className="artist-modal" onClick={(e) => e.stopPropagation()}>
-            <button className="artist-modal__close" onClick={closeModal}>✕</button>
+          {/* cards (now fully clickable) */}
+          <div className="artists-cards">
+            {initialSlides.map((artist) => (
 
-            <div className="artist-modal__header">
               <div
-                className="artist-modal__thumb"
-                style={{
-                  backgroundImage: `url('${currentArtist.image}')`,
-                  backgroundPosition: currentArtist.position || "50% 50%",
-                }}
-              />
-              <div className="artist-modal__titlewrap">
-                <h2 className="artist-modal__title">{currentArtist.name}</h2>
-                <p className="artist-modal__text">{currentArtist.fullInfo}</p>
+                className="artist-card artist-card--clickable"
+                key={artist.name}
+                role="button"
+                tabIndex={0}
+                onClick={() => openArtist(artist)}
+                onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && openArtist(artist)}
+              >
+                <div
+                  className="artist-card__image"
+                  style={{
+                    backgroundImage: `url('${artist.image}')`,
+                    backgroundPosition: artist.position || "50% 50%",
+                  }}
+                />
+                <div className="artist-card__tagtip">
+                  {(artist.tags || []).join("  ")}
+                </div>
+
+                <div className="artist-card__body">
+                  <h3 className="artist-card__name">{artist.name}</h3>
+
+                  {/* 3+ sentences preview */}
+                  <p className="artist-card__desc">{artist.preview}</p>
+
+                  {/* <div className="artist-card__cta">Click for more</div> */}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Popup modal (small window + info + Spotify) */}
+          {showModal && currentArtist && (
+            <div className="artist-modal__backdrop" onClick={closeModal}>
+              <div className="artist-modal" onClick={(e) => e.stopPropagation()}>
+                <button className="artist-modal__close" onClick={closeModal}>✕</button>
+
+                <div className="artist-modal__header">
+                  <div
+                    className="artist-modal__thumb"
+                    style={{
+                      backgroundImage: `url('${currentArtist.image}')`,
+                      backgroundPosition: currentArtist.position || "50% 50%",
+                    }}
+                  />
+                  <div className="artist-modal__titlewrap">
+                    <h2 className="artist-modal__title">{currentArtist.name}</h2>
+                    <p className="artist-modal__text">{currentArtist.fullInfo}</p>
+                  </div>
+                </div>
+
+                <div className="artist-modal__spotify">
+                  <ArtistsSongs songURL={currentArtist.songURL} />
+                </div>
               </div>
             </div>
-
-            <div className="artist-modal__spotify">
-              <ArtistsSongs songURL={currentArtist.songURL} />
-            </div>
-          </div>
-        </div>
-      )}
-    </section>
+          )}
+        </section>
+      </div>
+    </>
   );
 }
 
