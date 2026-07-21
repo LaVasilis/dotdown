@@ -18,7 +18,7 @@ const DETAIL_QUERY = `*[_type == "newsArticle" && slug.current == $slug][0]{
 function NewsDetail() {
   const { id } = useParams(); // this is actually the slug
   const navigate = useNavigate();
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const currentLang = i18n.language || 'en';
 
   const [item, setItem] = useState(null);
@@ -52,9 +52,9 @@ function NewsDetail() {
     return (
       <main className="news-detail">
         <button className="back-btn" onClick={() => navigate("/news")}>
-          ← Back to news
+          {t("news.backToNews")}
         </button>
-        <p>Loading…</p>
+        <p>{t("news.loading")}</p>
       </main>
     );
   }
@@ -63,9 +63,9 @@ function NewsDetail() {
     return (
       <main className="news-detail">
         <button className="back-btn" onClick={() => navigate("/news")}>
-          ← Back to news
+          {t("news.backToNews")}
         </button>
-        <p>Failed to load: {String(err.message || err)}</p>
+        <p>{t("news.failedToLoad")} {String(err.message || err)}</p>
       </main>
     );
   }
@@ -74,9 +74,9 @@ function NewsDetail() {
     return (
       <main className="news-detail">
         <button className="back-btn" onClick={() => navigate("/news")}>
-          ← Back to news
+          {t("news.backToNews")}
         </button>
-        <p>News item not found.</p>
+        <p>{t("news.notFound")}</p>
       </main>
     );
   }
@@ -84,7 +84,7 @@ function NewsDetail() {
   return (
     <main className="news-detail">
       <button className="back-btn" onClick={() => navigate("/news")}>
-        ← Back to news
+        {t("news.backToNews")}
       </button>
 
       <h1>{item.title?.[currentLang] ?? item.title?.en ?? item.title?.el}</h1>

@@ -18,17 +18,18 @@ const QUERY = `*[_type == "newsArticle"] | order(publishedAt desc) {
 
 const PAGE_SIZE = 6;
 
-const filters = [
-  { key: "all", label: "All" },
-  { key: "upcoming", label: "Upcoming Lives" },
-  { key: "releases", label: "Artist Releases" },
-  { key: "general", label: "General News" },
+const filterKeys = [
+  { key: "all", labelKey: "all" },
+  { key: "upcoming", labelKey: "upcoming" },
+  { key: "releases", labelKey: "releases" },
+  { key: "general", labelKey: "general" },
 ];
 
 function NewsPage() {
   const [newsItems, setNewsItems] = useState([]);
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const currentLang = i18n.language || 'en';
+  const filters = filterKeys.map((f) => ({ ...f, label: t(`news.filters.${f.labelKey}`) }));
 
   useEffect(() => {
   sanity.fetch(QUERY).then(setNewsItems).catch(console.error);
@@ -113,13 +114,13 @@ return newsItems.filter((item) => item.category === activeFilter);
               </p>
               <h3 className="news-card-title">{item.title?.[currentLang] ?? item.title?.en ?? item.title?.el}</h3>
               <p className="news-card-excerpt">{item.excerpt?.[currentLang] ?? item.excerpt?.en ?? item.excerpt?.el}</p>
-              <span className="news-card-link">Read more →</span>
+              <span className="news-card-link">{t("news.readMore")}</span>
             </div>
           </article>
         ))}
 
         {currentItems.length === 0 && (
-          <p className="news-empty">No news for this filter (yet).</p>
+          <p className="news-empty">{t("news.empty")}</p>
         )}
       </section>
 
@@ -131,7 +132,7 @@ return newsItems.filter((item) => item.category === activeFilter);
             onClick={handlePrevPage}
             disabled={currentPage === 1}
           >
-            ‹ Prev
+            {t("news.prev")}
           </button>
 
           {Array.from({ length: pageCount }).map((_, idx) => {
@@ -154,7 +155,7 @@ return newsItems.filter((item) => item.category === activeFilter);
             onClick={handleNextPage}
             disabled={currentPage === pageCount}
           >
-            Next ›
+            {t("news.next")}
           </button>
         </section>
       )}

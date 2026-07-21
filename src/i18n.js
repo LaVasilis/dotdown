@@ -13,10 +13,18 @@ const resources = {
         contact: "Contact",
         News: "News",
       },
+      comingSoon: {
+        title: "Something New Is Coming",
+        subtitle:
+          "We’re building the new DotDown The Label website. Follow us to stay in the loop.",
+      },
       home: {
         title: "Become a part of music",
         subtitle: "Lets collab and make the music world much better.",
-        
+        aboutText1:
+          "DotDown is an independent label focused on pushing new sound forward. We work closely with our artists from creation to release—building projects with strong identity, clean visuals, and long-term vision. Our roster blends atmosphere, rhythm, and emotion across hip-hop and modern production styles, always staying true to the culture while exploring what’s next.",
+        aboutText2:
+          "From studio sessions to distribution and promotion, we’re here to develop talent and deliver music that feels real, intentional, and timeless.",
       },
      workWithUs: {
         title: "Work With Our Studio",
@@ -83,6 +91,22 @@ const resources = {
             },
           },
         },
+        news: {
+          filters: {
+            all: "All",
+            upcoming: "Upcoming Lives",
+            releases: "Artist Releases",
+            general: "General News",
+          },
+          readMore: "Read more →",
+          empty: "No news for this filter (yet).",
+          prev: "‹ Prev",
+          next: "Next ›",
+          backToNews: "← Back to news",
+          loading: "Loading…",
+          failedToLoad: "Failed to load:",
+          notFound: "News item not found.",
+        },
       },
   },
   el: {
@@ -95,9 +119,18 @@ const resources = {
         contact: "Επικοινωνία",
         News:"Νέα",
           },
+      comingSoon: {
+        title: "Κάτι Νέο Έρχεται",
+        subtitle:
+          "Χτίζουμε τον νέο ιστότοπο του DotDown The Label. Ακολούθησέ μας για να μαθαίνεις πρώτος/η.",
+      },
       home: {
         title: "Γινε κομματι της μουσικης",
         subtitle: "Ας συνεργαστουμε και ας κανουμε το κοσμο της μουσικης καλυτερο.",
+        aboutText1:
+          "Η DotDown είναι μια ανεξάρτητη δισκογραφική εταιρεία που εστιάζει στην προώθηση νέου ήχου. Συνεργαζόμαστε στενά με τους καλλιτέχνες μας από τη δημιουργία μέχρι την κυκλοφορία—χτίζοντας projects με ισχυρή ταυτότητα, καθαρό visual κομμάτι και μακροπρόθεσμο όραμα. Το ρόστερ μας συνδυάζει ατμόσφαιρα, ρυθμό και συναίσθημα ανάμεσα στο hip-hop και τα σύγχρονα στυλ παραγωγής, μένοντας πάντα πιστό στην κουλτούρα ενώ εξερευνά το επόμενο βήμα.",
+        aboutText2:
+          "Από τα sessions στο στούντιο μέχρι τη διανομή και την προώθηση, είμαστε εδώ για να αναδείξουμε ταλέντο και να παραδώσουμε μουσική που νιώθεται αληθινή, στοχευμένη και διαχρονική.",
       },
       workWithUs: {
       title: "Δούλεψε Με Το Studio Μας",
@@ -163,6 +196,22 @@ const resources = {
               "Οι BARO PASSO είναι ένα rap-rock συγκρότημα από την Αθήνα που συνδυάζει τον αυθεντικό ήχο της rock με την ενέργεια και την αμεσότητα του ελληνικού hip hop. Σχηματίστηκαν το 2022. Το συγκρότημα αποτελείται από τους Κωνσταντίνο Δρουγγάνη (τύμπανα), Νίκο Χριστογιαννόπουλο (μπάσο), Σπύρο Σπυρόπουλο (κιθάρα), Αντώνη Φαλλιέρα (κιθάρα), Παναγιώτη Κωνσταντόπουλο – Sapiens (ράπ), Κυριάκο Δημητρούλα – Diky (ράπ) και Γιάννη Γεωργίου – Tay (ράπ). Στη δισκογραφία τους περιλαμβάνονται το single «Robin Hood», το ντεμπούτο άλμπουμ τους «Bacteria» και το «Παλιόπαιδα», με τη συμμετοχή του Taki Tsan. Η παρουσίαση του άλμπουμ πραγματοποιήθηκε στο Ilion Plus στην Αθήνα. Με εμφανίσεις σε χώρους όπως το Ilion Plus, την Αρχιτεκτονική Live Stage, το Κύτταρο Live Stage και το Bad Tooth Live Stage, οι BARO PASSO έχουν χτίσει τη φήμη ενός συγκροτήματος με εκρηκτική σκηνική παρουσία, έντονη ενέργεια και ξεχωριστό ήχο που γεφυρώνει δύο μουσικούς κόσμους.",
           },
         },
+      },
+      news: {
+        filters: {
+          all: "Όλα",
+          upcoming: "Επερχόμενα Live",
+          releases: "Κυκλοφορίες Καλλιτεχνών",
+          general: "Γενικά Νέα",
+        },
+        readMore: "Διάβασε περισσότερα →",
+        empty: "Δεν υπάρχουν νέα για αυτό το φίλτρο (ακόμα).",
+        prev: "‹ Προηγούμενο",
+        next: "Επόμενο ›",
+        backToNews: "← Πίσω στα νέα",
+        loading: "Φόρτωση…",
+        failedToLoad: "Αποτυχία φόρτωσης:",
+        notFound: "Το άρθρο δεν βρέθηκε.",
       },
     },
   },

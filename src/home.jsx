@@ -94,20 +94,8 @@ function Home() {
       <section className="panel panel--about">
         <div className="about-wrap">
           <h2 className="about-title">DotDown The Label</h2>
-          <p className="about-text">
-            DotDown is an independent label focused on pushing new sound forward.
-            We work closely with our artists from creation to release—building
-            projects with strong identity, clean visuals, and long-term vision.
-            Our roster blends atmosphere, rhythm, and emotion across hip-hop and
-            modern production styles, always staying true to the culture while
-            exploring what’s next.
-
-            <p></p>
-<br></br>
-            From studio sessions to distribution and promotion, we’re here to
-            develop talent and deliver music that feels real, intentional, and
-            timeless.
-          </p>
+          <p className="about-text">{t("home.aboutText1")}</p>
+          <p className="about-text">{t("home.aboutText2")}</p>
         </div>
       </section>
     </main>

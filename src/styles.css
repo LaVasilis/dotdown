@@ -258,6 +258,7 @@ body {
 .home-scroll .panel {
   top: 10px;
   height: 50vh;
+  height: 50dvh;
   position: relative;
 }
 
@@ -265,6 +266,7 @@ body {
   position: sticky;
   top: 70px;
   height: calc(100vh - 70px);
+  height: calc(100dvh - 70px);
   overflow: hidden;
 }
 
@@ -348,8 +350,12 @@ body {
   font-size: 1.05rem;
   line-height: 1.8;
   opacity: 0.9;
-  margin: 0 auto 216px;
+  margin: 0 auto 24px;
   max-width: 780px;
+}
+
+.about-text:last-of-type {
+  margin-bottom: 216px;
 }
 
 /* Home responsive */
@@ -1192,4 +1198,102 @@ body {
   overflow: hidden;
 } */
 
+}
+
+/* =========================
+   COMING SOON
+   ========================= */
+.coming-soon {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  background: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.coming-soon__bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.coming-soon__lang {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 2;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}
+
+.coming-soon__lang:hover {
+  border-color: #fff;
+}
+
+.coming-soon__content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 560px;
+  padding: 24px;
+}
+
+.coming-soon__logo {
+  width: 120px;
+  margin-bottom: 32px;
+}
+
+.coming-soon__content h1 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin: 0 0 16px;
+  line-height: 1.15;
+}
+
+.coming-soon__content p {
+  font-size: 1.05rem;
+  opacity: 0.8;
+  line-height: 1.6;
+  margin: 0 0 36px;
+}
+
+.coming-soon__socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  font-size: 1.4rem;
+}
+
+.coming-soon__socials a {
+  color: #fff;
+  opacity: 0.85;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.coming-soon__socials a:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 480px) {
+  .coming-soon__content h1 {
+    font-size: 1.9rem;
+  }
+  .coming-soon__logo {
+    width: 96px;
+  }
 }
