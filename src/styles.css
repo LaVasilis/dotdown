@@ -298,9 +298,10 @@ body {
 
 .panel--title .sticky--title {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   background: #000;
+  padding-bottom: 12vh;
 }
 
 .panel--title .title-block {
@@ -545,6 +546,24 @@ body {
   background-color: #000000;
   border-color: #05aaeb;
 }
+
+.form-container .form-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-status {
+  font-size: 13px;
+  margin: 0;
+}
+
+.form-status-success {
+  color: #4fd17c;
+}
+
+.form-status-error {
+  color: #f16565;
+}
 @media (max-width: 900px) {
   .work-container {
     padding: 40px 16px;
@@ -753,10 +772,8 @@ body {
    ========================= */
 
 .container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
+  margin: 0 auto;
   width: 800px;
   height: 400px;
   background: #000;
@@ -913,7 +930,7 @@ body {
 .artists-cards {
   width: 100%;
   max-width: 1100px;
-  margin: 520px auto 80px;
+  margin: 60px auto 80px;
   padding: 0 24px;
   display: grid;
   grid-template-columns: repeat(4, minmax(220px, 1fr));
@@ -1029,13 +1046,19 @@ body {
 }
 
 .artist-modal__close {
-  position: absolute;
-  top: 10px;
-  right: 12px;
-  background: transparent;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: block;
+  margin-left: auto;
+  margin-bottom: -30px;
+  background: rgba(11, 11, 11, 0.85);
   border: 0;
+  border-radius: 999px;
   color: #fff;
   font-size: 22px;
+  line-height: 1;
+  padding: 4px 10px;
   cursor: pointer;
   opacity: 0.85;
 }
