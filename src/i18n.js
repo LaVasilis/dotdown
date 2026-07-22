@@ -86,7 +86,7 @@ const resources = {
                 "Diky is a rapper, beatmaker, member of the bands Baro Passo and Unity, and a founding member of DotDown. As a member of Unity, he released the EP “Pages of War” in 2021, on which he contributed both lyrics and beats, and as a member of Baro Passo, he released their debut EP titled “Bacteria” (2025). At the same time, he has contributed to the release of the projects “Pre-Season” and “Navajo,” solo EPs by Sapiens and Tay, respectively, in collaboration with Nezzz. His goal is collective expression through unique soundscapes each time, always emphasizing hip-hop culture combined with dusty beats and heavy riffs.",
             },
             nez: {
-              name: "NEZ",
+              name: "NEZZZ",
               seoDescription:
                 "Nezzz artist profile, music releases, videos and news from DOT DOWN.",
               preview:
