@@ -298,11 +298,12 @@ body {
   background: #000;
 }
 
+
 .panel--title .sticky--title {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  background: #000;
+  background: #000000;
   padding-bottom: 12vh;
 }
 
@@ -313,11 +314,18 @@ body {
   will-change: transform, opacity;
 }
 
+
 .panel--title .title-block h1 {
-  margin-bottom: 520px;
+  margin-bottom: 80%;
   font-size: 56px;
   line-height: 1.05;
   font-weight: 800;
+}
+
+@media (max-height: 610px) {
+  .panel--title .title-block h1 {
+    margin-bottom: 80%;
+  }
 }
 
 .panel--title .title-block p {

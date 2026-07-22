@@ -12,7 +12,7 @@ import NewsDetail from './NewsDetail.jsx';
 import ComingSoon from './ComingSoon.jsx';
 
 // Flip to false to bring the real site back online.
-const COMING_SOON = true;
+const COMING_SOON = false;
 
 function App() {
   if (COMING_SOON) {
