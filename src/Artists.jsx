@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { useParams, useNavigate } from "react-router-dom";
 import "./styles.css";
 import sapiImage from "./assets/sapi2Img.webp";
 import dikiImage from "./assets/diky.jpeg";
@@ -8,12 +9,15 @@ import tayImg from "./assets/tayImg.webp";
 import barro from "./assets/barro.webp";
 import ArtistsSongs from "./Songs.jsx";
 import ColorBends from "./ColorBends.jsx";
+import useDocumentMeta from "./useDocumentMeta.js";
 
 // Non-translatable fields; localized name/preview/fullInfo/tags come from
 // the "artistsPage.members.<id>" and "artistsPage.tags.<key>" i18n keys.
+// `slug` is the URL segment for that artist's own page (/artists/<slug>).
 const memberMeta = [
   {
     id: "sapiens",
+    slug: "sapiens",
     image: sapiImage,
     tagKeys: ["rapper"],
     position: "50% 50%",
@@ -22,6 +26,7 @@ const memberMeta = [
   },
   {
     id: "tay",
+    slug: "tay",
     image: tayImg,
     tagKeys: ["rapper"],
     position: "0px 40%",
@@ -30,6 +35,7 @@ const memberMeta = [
   },
   {
     id: "diky",
+    slug: "diky",
     image: dikiImage,
     tagKeys: ["rapper"],
     position: "0px 28%",
@@ -38,6 +44,7 @@ const memberMeta = [
   },
   {
     id: "nez",
+    slug: "nez",
     image: nez,
     tagKeys: ["producer"],
     position: "0px 40%",
@@ -46,6 +53,7 @@ const memberMeta = [
   },
   {
     id: "baroPasso",
+    slug: "baro-passo",
     image: barro,
     tagKeys: ["band"],
     position: "10% 50%",
@@ -56,6 +64,8 @@ const memberMeta = [
 
 function Artists() {
   const { t } = useTranslation();
+  const { slug } = useParams();
+  const navigate = useNavigate();
 
   const members = useMemo(
     () =>
@@ -64,14 +74,13 @@ function Artists() {
         name: t(`artistsPage.members.${meta.id}.name`),
         preview: t(`artistsPage.members.${meta.id}.preview`),
         fullInfo: t(`artistsPage.members.${meta.id}.fullInfo`),
+        seoDescription: t(`artistsPage.members.${meta.id}.seoDescription`),
         tags: meta.tagKeys.map((tagKey) => t(`artistsPage.tags.${tagKey}`)),
       })),
     [t]
   );
 
   const [slideIds, setSlideIds] = useState(() => memberMeta.map((m) => m.id));
-  const [showModal, setShowModal] = useState(false);
-  const [currentArtist, setCurrentArtist] = useState(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -85,19 +94,46 @@ function Artists() {
     () => Object.fromEntries(members.map((m) => [m.id, m])),
     [members]
   );
+  const membersBySlug = useMemo(
+    () => Object.fromEntries(members.map((m) => [m.slug, m])),
+    [members]
+  );
   const slides = slideIds.map((id) => membersById[id]);
 
-  // const handleNext = () => setSlides((prev) => [...prev.slice(1), prev[0]]);
-  // const handlePrev = () => setSlides((prev) => [prev[prev.length - 1], ...prev.slice(0, -1)]);
+  // The URL is the single source of truth for which artist's modal is open,
+  // so deep links (/artists/baro-passo) and the browser back button work.
+  const currentArtist = slug ? membersBySlug[slug] : null;
+  const showModal = Boolean(slug);
+
+  // A slug that doesn't match any artist falls back to the plain listing.
+  useEffect(() => {
+    if (slug && !membersBySlug[slug]) {
+      navigate("/artists", { replace: true });
+    }
+  }, [slug, membersBySlug, navigate]);
+
+  useDocumentMeta(
+    currentArtist
+      ? {
+          title: `${currentArtist.name} — DOT DOWN`,
+          description: currentArtist.seoDescription,
+          url: `https://dotdownthelabel.com/artists/${currentArtist.slug}`,
+          canonical: `https://dotdownthelabel.com/artists/${currentArtist.slug}`,
+        }
+      : {
+          title: t("artistsPage.seoTitle"),
+          description: t("artistsPage.seoDescription"),
+          url: "https://dotdownthelabel.com/artists",
+          canonical: "https://dotdownthelabel.com/artists",
+        }
+  );
 
   const openArtist = (artist) => {
-    setCurrentArtist(artist);
-    setShowModal(true);
+    navigate(`/artists/${artist.slug}`);
   };
 
   const closeModal = () => {
-    setShowModal(false);
-    setCurrentArtist(null);
+    navigate("/artists");
   };
 
   return (
