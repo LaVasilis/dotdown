@@ -84,7 +84,7 @@ function Home() {
             //   opacity: titleOpacity,
             // }}
           >
-            <h1>{t("home.title")}</h1>
+            {/* <h1>{t("home.title")}</h1> */}
             {/* <p>{t("home.subtitle")}</p> */}
           </div>
         </div>
@@ -93,6 +93,7 @@ function Home() {
       {/* 3) LABEL SUMMARY PANEL (replaces carousel) */}
       <section className="panel panel--about">
         <div className="about-wrap">
+          <h1>{t("home.title")}</h1>
           <h2 className="about-title">DotDown The Label</h2>
           <p className="about-text">{t("home.aboutText1")}</p>
           <p className="about-text">{t("home.aboutText2")}</p>
