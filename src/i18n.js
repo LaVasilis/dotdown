@@ -21,6 +21,7 @@ const resources = {
       home: {
         title: "Become a part of music",
         subtitle: "Lets collab and make the music world much better.",
+        scrollCue: "Scroll down to see what it's all about",
         aboutText1:
           "DotDown is an independent label focused on pushing new sound forward. We work closely with our artists from creation to release—building projects with strong identity, clean visuals, and long-term vision. Our roster blends atmosphere, rhythm, and emotion across hip-hop and modern production styles, always staying true to the culture while exploring what’s next.",
         aboutText2:
@@ -127,6 +128,7 @@ const resources = {
       home: {
         title: "Γινε κομματι της μουσικης",
         subtitle: "Ας συνεργαστουμε και ας κανουμε το κοσμο της μουσικης καλυτερο.",
+        scrollCue: "Κάνε scroll για να δεις για τι πρόκειται",
         aboutText1:
           "Η DotDown είναι μια ανεξάρτητη δισκογραφική εταιρεία που εστιάζει στην προώθηση νέου ήχου. Συνεργαζόμαστε στενά με τους καλλιτέχνες μας από τη δημιουργία μέχρι την κυκλοφορία—χτίζοντας projects με ισχυρή ταυτότητα, καθαρό visual κομμάτι και μακροπρόθεσμο όραμα. Το ρόστερ μας συνδυάζει ατμόσφαιρα, ρυθμό και συναίσθημα ανάμεσα στο hip-hop και τα σύγχρονα στυλ παραγωγής, μένοντας πάντα πιστό στην κουλτούρα ενώ εξερευνά το επόμενο βήμα.",
         aboutText2:

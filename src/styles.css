@@ -255,87 +255,99 @@ body {
   width: 100%;
 }
 
-.home-scroll .panel {
-  top: 10px;
-  height: 50vh;
-  height: 50dvh;
+.home-hero {
   position: relative;
-}
-
-.home-scroll .sticky {
-  position: sticky;
-  top: 70px;
-  height: calc(100vh - 70px);
-  height: calc(100dvh - 70px);
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
   overflow: hidden;
 }
 
-/* PANEL 1: VIDEO */
-.panel--video .sticky--video {
-  background: transparent;
-}
-
-.panel--video .home-hero__video {
+.home-hero__video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center center;
-  transform-origin: center;
   z-index: 0;
 }
 
-.panel--video .home-hero__overlay {
+.home-hero__overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.25);
   z-index: 1;
 }
 
-/* PANEL 2: TITLE */
-.panel--title {
-  background: #000;
+.home-hero__scrollcue {
+  position: absolute;
+  left: 50%;
+  bottom: 72px;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  color: #fff;
+  text-align: center;
+  animation: scrollcue-pulse 2.2s ease-in-out infinite;
 }
 
+.home-hero__scrollcue span {
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  opacity: 0.95;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}
 
-/* .panel--title .sticky--title {
+.home-hero__scrollcue-icon-wrap {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(3px);
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
-  background: #000000;
-  padding-bottom: 12vh;
-} */
+}
 
-/* .panel--title .title-block {
-  text-align: center;
-  max-width: 980px;
-  padding: 0 24px;
-  will-change: transform, opacity;
-} */
+.home-hero__scrollcue-icon {
+  font-size: 1.15rem;
+}
 
-
-/* .panel--title .title-block h1 {
-  margin-top: 100%;
-
-} */
-
-/* @media (max-height: 610px) {
-  .panel--title .title-block h1 {
-    margin-bottom: 80%;
+@keyframes scrollcue-pulse {
+  0%, 100% {
+    opacity: 0.55;
+    transform: translateX(-50%) translateY(0);
   }
-} */    
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(10px);
+  }
+}
 
-/* .panel--title .title-block p {
-  margin: 0;
-  font-size: 16px;
-  opacity: 0.85;
-  margin-top: -170px;
-} */
- 
-.title-block h1 {
- color: #631616;
-  margin-top: -170px;
+@media (max-width: 480px) {
+  .home-hero__scrollcue {
+    bottom: 56px;
+    gap: 10px;
+  }
+  .home-hero__scrollcue span {
+    font-size: 0.75rem;
+    max-width: 220px;
+    letter-spacing: 0.1em;
+  }
+  .home-hero__scrollcue-icon-wrap {
+    width: 36px;
+    height: 36px;
+  }
+  .home-hero__scrollcue-icon {
+    font-size: 1rem;
+  }
 }
 
 .panel--about {
@@ -349,24 +361,23 @@ body {
   width: 100%;
   max-width: 900px;
   text-align: center;
-  
 }
 
-.panel--about h1 {
-  /* font-size: clamp(3rem, 5vw, 5rem); */
-  line-height: 1.05;
+.about-headline {
+  font-size: 2.6rem;
+  line-height: 1.15;
   font-weight: 800;
-  letter-spacing: 0.12em;
-  margin: -200px 10px  300px;
-  text-transform: uppercase;
-  color: #ffffff;
+  letter-spacing: 0.02em;
+  margin: 0 0 12px;
+  color: #fff;
 }
 
 .about-title {
-  font-size: 2.2rem;
-  margin-bottom: 50px;
+  font-size: 1.3rem;
+  font-weight: 600;
   letter-spacing: 0.5px;
-  /* margin-top: -170px; */
+  opacity: 0.8;
+  margin: 0 0 50px;
 }
 
 .about-text {
@@ -383,8 +394,8 @@ body {
 
 /* Home responsive */
 @media (max-width: 768px) {
-  .panel--title .title-block h1 {
-    font-size: 40px;
+  .about-headline {
+    font-size: 2rem;
   }
   .carousel-card img {
     height: 300px;
@@ -392,13 +403,8 @@ body {
 }
 
 @media (max-width: 420px) {
-  .panel--title .title-block h1 {
-    font-size: 34px;
-    margin-top: -75px;
-  }
-  
-  .panel--title .title-block p {
-    font-size: 14px;
+  .about-headline {
+    font-size: 1.7rem;
   }
   .carousel-controls > button {
     width: 38px;
